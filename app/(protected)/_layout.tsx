@@ -24,13 +24,10 @@ export default function ProtectedLayout() {
             fontSize: 12,
             fontWeight: '500',
           },
-          headerStyle: {
-            backgroundColor: '#007AFF',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
+          // Hide default headers to prevent flickering
+          headerShown: false,
+          // Remove animation to prevent header flickering
+          animation: 'none',
         }}
       >
         <Tabs.Screen
@@ -40,7 +37,6 @@ export default function ProtectedLayout() {
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="home-outline" size={size} color={color} />
             ),
-            headerTitle: "Dashboard",
           }}
         />
         <Tabs.Screen
@@ -50,7 +46,6 @@ export default function ProtectedLayout() {
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="card-outline" size={size} color={color} />
             ),
-            headerTitle: "Subscriptions",
           }}
         />
         <Tabs.Screen
@@ -60,7 +55,6 @@ export default function ProtectedLayout() {
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="person-outline" size={size} color={color} />
             ),
-            headerTitle: "Profile",
           }}
         />
       </Tabs>

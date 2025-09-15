@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-    Alert,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Alert,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StableHeader } from '../../components/StableHeader';
 import { useAuth } from '../../contexts/AuthContext';
 import { formatDate, getUserAvatarText, getUserDisplayName, getUserProvider } from '../../utils/userUtils';
 
@@ -125,13 +125,16 @@ export default function ProfileScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.content}>
-        <UserInfo user={user} />
-        <AccountInfo user={user} />
-        <ActionButtons onSignOut={handleSignOut} />
-      </ScrollView>
-    </SafeAreaView>
+    <View style={{ flex: 1 }}>
+      <StableHeader title="Profile" />
+      <View style={styles.container}>
+        <ScrollView style={styles.content}>
+          <UserInfo user={user} />
+          <AccountInfo user={user} />
+          <ActionButtons onSignOut={handleSignOut} />
+        </ScrollView>
+      </View>
+    </View>
   );
 }
 

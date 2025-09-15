@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StableHeader } from '../../components/StableHeader';
 import { useAuth } from '../../contexts/AuthContext';
 import { getUserDisplayName } from '../../utils/userUtils';
 
@@ -100,16 +100,19 @@ export default function DashboardScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.content}>
-        <DashboardHeader user={user} />
-        <StatsContainer />
-        <ActionsContainer 
-          onViewSubscriptions={handleViewSubscriptions}
-          onSignOut={handleSignOut}
-        />
-      </ScrollView>
-    </SafeAreaView>
+    <View style={{ flex: 1 }}>
+      <StableHeader title="Dashboard" />
+      <View style={styles.container}>
+        <ScrollView style={styles.content}>
+          <DashboardHeader user={user} />
+          <StatsContainer />
+          <ActionsContainer 
+            onViewSubscriptions={handleViewSubscriptions}
+            onSignOut={handleSignOut}
+          />
+        </ScrollView>
+      </View>
+    </View>
   );
 }
 

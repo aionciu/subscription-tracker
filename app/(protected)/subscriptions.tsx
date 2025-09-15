@@ -1,50 +1,53 @@
 import React from 'react';
 import {
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StableHeader } from '../../components/StableHeader';
 
 export default function SubscriptionsScreen() {
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.content}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Your Subscriptions</Text>
-          <Text style={styles.subtitle}>
-            Track and manage all your subscription services
-          </Text>
-        </View>
+    <View style={{ flex: 1 }}>
+      <StableHeader title="Subscriptions" />
+      <View style={styles.container}>
+        <ScrollView style={styles.content}>
+          <View style={styles.header}>
+            <Text style={styles.title}>Your Subscriptions</Text>
+            <Text style={styles.subtitle}>
+              Track and manage all your subscription services
+            </Text>
+          </View>
 
-        <View style={styles.emptyState}>
-          <Text style={styles.emptyIcon}>📱</Text>
-          <Text style={styles.emptyTitle}>No subscriptions yet</Text>
-          <Text style={styles.emptySubtitle}>
-            Add your first subscription to start tracking your spending
-          </Text>
-          
-          <TouchableOpacity style={styles.addButton}>
-            <Text style={styles.addButtonText}>+ Add Subscription</Text>
-          </TouchableOpacity>
-        </View>
+          <View style={styles.emptyState}>
+            <Text style={styles.emptyIcon}>📱</Text>
+            <Text style={styles.emptyTitle}>No subscriptions yet</Text>
+            <Text style={styles.emptySubtitle}>
+              Add your first subscription to start tracking your spending
+            </Text>
+            
+            <TouchableOpacity style={styles.addButton}>
+              <Text style={styles.addButtonText}>+ Add Subscription</Text>
+            </TouchableOpacity>
+          </View>
 
-        <View style={styles.tipsSection}>
-          <Text style={styles.tipsTitle}>💡 Tips</Text>
-          <View style={styles.tipItem}>
-            <Text style={styles.tipText}>• Track recurring payments</Text>
+          <View style={styles.tipsSection}>
+            <Text style={styles.tipsTitle}>💡 Tips</Text>
+            <View style={styles.tipItem}>
+              <Text style={styles.tipText}>• Track recurring payments</Text>
+            </View>
+            <View style={styles.tipItem}>
+              <Text style={styles.tipText}>• Set renewal reminders</Text>
+            </View>
+            <View style={styles.tipItem}>
+              <Text style={styles.tipText}>• Monitor spending trends</Text>
+            </View>
           </View>
-          <View style={styles.tipItem}>
-            <Text style={styles.tipText}>• Set renewal reminders</Text>
-          </View>
-          <View style={styles.tipItem}>
-            <Text style={styles.tipText}>• Monitor spending trends</Text>
-          </View>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        </ScrollView>
+      </View>
+    </View>
   );
 }
 
