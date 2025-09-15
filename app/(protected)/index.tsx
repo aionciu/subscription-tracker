@@ -1,10 +1,10 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
 import {
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
+    ScrollView,
+    Text,
+    TouchableOpacity,
+    View,
 } from 'react-native';
 import { StableHeader } from '../../components/StableHeader';
 import { useAuth } from '../../contexts/AuthContext';
@@ -98,9 +98,13 @@ export default function DashboardScreen() {
     router.push('/(protected)/subscriptions');
   };
 
+  const handleAvatarPress = () => {
+    router.push('/(protected)/profile');
+  };
+
   return (
     <View className="flex-1">
-      <StableHeader title="Dashboard" />
+      <StableHeader title="Dashboard" onAvatarPress={handleAvatarPress} />
       <View className="flex-1 bg-secondary-50">
         <ScrollView className="flex-1 p-5">
           <DashboardHeader user={user} />

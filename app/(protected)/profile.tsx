@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  Alert,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
+    Alert,
+    ScrollView,
+    Text,
+    TouchableOpacity,
+    View,
 } from 'react-native';
 import { StableHeader } from '../../components/StableHeader';
 import { useAuth } from '../../contexts/AuthContext';
@@ -123,9 +123,13 @@ export default function ProfileScreen() {
     showSignOutConfirmation(() => performSignOut(signOut));
   };
 
+  const handleAvatarPress = () => {
+    // Already on profile tab, no navigation needed
+  };
+
   return (
     <View className="flex-1">
-      <StableHeader title="Profile" />
+      <StableHeader title="Profile" onAvatarPress={handleAvatarPress} />
       <View className="flex-1 bg-secondary-50">
         <ScrollView className="flex-1 p-5">
           <UserInfo user={user} />
