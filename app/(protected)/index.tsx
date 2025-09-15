@@ -9,59 +9,105 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../../contexts/AuthContext';
+import { getUserDisplayName } from '../../utils/userUtils';
+
+const handleSignOutError = (error: unknown) => {
+  console.error('Sign out error:', error);
+};
+
+const performSignOut = async (signOut: () => Promise<void>) => {
+  try {
+    await signOut();
+  } catch (error) {
+    handleSignOutError(error);
+  }
+};
+
+const DashboardHeader = ({ user }: { user: any }) => (
+  <View style={styles.header}>
+    <Text style={styles.welcomeText}>
+      Welcome back, {getUserDisplayName(user)}!
+    </Text>
+    <Text style={styles.subtitle}>
+      Manage your subscriptions and track your spending
+    </Text>
+  </View>
+);
+
+const StatCard = ({ number, label }: { number: string; label: string }) => (
+  <View style={styles.statCard}>
+    <Text style={styles.statNumber}>{number}</Text>
+    <Text style={styles.statLabel}>{label}</Text>
+  </View>
+);
+
+const StatsContainer = () => (
+  <View style={styles.statsContainer}>
+    <StatCard number="0" label="Active Subscriptions" />
+    <StatCard number="$0" label="Monthly Cost" />
+  </View>
+);
+
+const ActionButton = ({ 
+  text, 
+  onPress, 
+  isDestructive = false 
+}: { 
+  text: string; 
+  onPress: () => void; 
+  isDestructive?: boolean; 
+}) => (
+  <TouchableOpacity
+    style={[styles.actionButton, isDestructive && styles.signOutButton]}
+    onPress={onPress}
+  >
+    <Text style={[styles.actionButtonText, isDestructive && styles.signOutButtonText]}>
+      {text}
+    </Text>
+  </TouchableOpacity>
+);
+
+const ActionsContainer = ({ 
+  onViewSubscriptions, 
+  onSignOut 
+}: { 
+  onViewSubscriptions: () => void; 
+  onSignOut: () => void; 
+}) => (
+  <View style={styles.actionsContainer}>
+    <ActionButton 
+      text="📱 View Subscriptions" 
+      onPress={onViewSubscriptions} 
+    />
+    <ActionButton 
+      text="🚪 Sign Out" 
+      onPress={onSignOut} 
+      isDestructive={true} 
+    />
+  </View>
+);
 
 export default function DashboardScreen() {
   const { user, signOut } = useAuth();
   const router = useRouter();
 
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-    } catch (error) {
-      console.error('Sign out error:', error);
-    }
+  const handleSignOut = () => {
+    performSignOut(signOut);
+  };
+
+  const handleViewSubscriptions = () => {
+    router.push('/(protected)/subscriptions');
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.content}>
-        <View style={styles.header}>
-          <Text style={styles.welcomeText}>
-            Welcome back, {user?.user_metadata?.full_name || user?.email}!
-          </Text>
-          <Text style={styles.subtitle}>
-            Manage your subscriptions and track your spending
-          </Text>
-        </View>
-
-        <View style={styles.statsContainer}>
-          <View style={styles.statCard}>
-            <Text style={styles.statNumber}>0</Text>
-            <Text style={styles.statLabel}>Active Subscriptions</Text>
-          </View>
-          <View style={styles.statCard}>
-            <Text style={styles.statNumber}>$0</Text>
-            <Text style={styles.statLabel}>Monthly Cost</Text>
-          </View>
-        </View>
-
-        <View style={styles.actionsContainer}>
-          <TouchableOpacity
-            style={styles.actionButton}
-            onPress={() => router.push('/(protected)/subscriptions')}
-          >
-            <Text style={styles.actionButtonText}>📱 View Subscriptions</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={[styles.actionButton, styles.signOutButton]}
-            onPress={handleSignOut}
-          >
-            <Text style={[styles.actionButtonText, styles.signOutButtonText]}>
-              🚪 Sign Out
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <DashboardHeader user={user} />
+        <StatsContainer />
+        <ActionsContainer 
+          onViewSubscriptions={handleViewSubscriptions}
+          onSignOut={handleSignOut}
+        />
       </ScrollView>
     </SafeAreaView>
   );

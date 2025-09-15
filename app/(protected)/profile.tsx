@@ -9,98 +9,127 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../../contexts/AuthContext';
+import { formatDate, getUserAvatarText, getUserDisplayName, getUserProvider } from '../../utils/userUtils';
+
+const showSignOutConfirmation = (onConfirm: () => Promise<void>) => {
+  Alert.alert(
+    'Sign Out',
+    'Are you sure you want to sign out?',
+    [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'Sign Out',
+        style: 'destructive',
+        onPress: onConfirm,
+      },
+    ]
+  );
+};
+
+const handleSignOutError = (error: unknown) => {
+  console.error('Sign out error:', error);
+};
+
+const performSignOut = async (signOut: () => Promise<void>) => {
+  try {
+    await signOut();
+  } catch (error) {
+    handleSignOutError(error);
+  }
+};
+
+const UserAvatar = ({ user }: { user: any }) => (
+  <View style={styles.avatarContainer}>
+    <Text style={styles.avatarText}>
+      {getUserAvatarText(user)}
+    </Text>
+  </View>
+);
+
+const UserInfo = ({ user }: { user: any }) => (
+  <View style={styles.profileSection}>
+    <UserAvatar user={user} />
+    <Text style={styles.nameText}>
+      {getUserDisplayName(user)}
+    </Text>
+    <Text style={styles.emailText}>
+      {user?.email}
+    </Text>
+  </View>
+);
+
+const InfoItem = ({ label, value }: { label: string; value: string }) => (
+  <View style={styles.infoItem}>
+    <Text style={styles.infoLabel}>{label}</Text>
+    <Text style={styles.infoValue}>{value}</Text>
+  </View>
+);
+
+const AccountInfo = ({ user }: { user: any }) => (
+  <View style={styles.infoSection}>
+    <InfoItem 
+      label="Account Created" 
+      value={formatDate(user?.created_at)} 
+    />
+    <InfoItem 
+      label="Last Sign In" 
+      value={formatDate(user?.last_sign_in_at)} 
+    />
+    <InfoItem 
+      label="Provider" 
+      value={getUserProvider(user)} 
+    />
+  </View>
+);
+
+const ActionButton = ({ 
+  text, 
+  onPress, 
+  isDestructive = false 
+}: { 
+  text: string; 
+  onPress: () => void; 
+  isDestructive?: boolean; 
+}) => (
+  <TouchableOpacity 
+    style={[styles.actionButton, isDestructive && styles.signOutButton]}
+    onPress={onPress}
+  >
+    <Text style={[styles.actionButtonText, isDestructive && styles.signOutButtonText]}>
+      {text}
+    </Text>
+  </TouchableOpacity>
+);
+
+const ActionButtons = ({ onSignOut }: { onSignOut: () => void }) => (
+  <View style={styles.actionsSection}>
+    <ActionButton text="📧 Change Email" onPress={() => {}} />
+    <ActionButton text="🔒 Privacy Settings" onPress={() => {}} />
+    <ActionButton text="📱 Export Data" onPress={() => {}} />
+    <ActionButton 
+      text="🚪 Sign Out" 
+      onPress={onSignOut} 
+      isDestructive={true} 
+    />
+  </View>
+);
 
 export default function ProfileScreen() {
   const { user, signOut } = useAuth();
 
   const handleSignOut = () => {
-    Alert.alert(
-      'Sign Out',
-      'Are you sure you want to sign out?',
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
-        },
-        {
-          text: 'Sign Out',
-          style: 'destructive',
-          onPress: async () => {
-            try {
-              await signOut();
-            } catch (error) {
-              console.error('Sign out error:', error);
-            }
-          },
-        },
-      ]
-    );
+    showSignOutConfirmation(() => performSignOut(signOut));
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.content}>
-        <View style={styles.profileSection}>
-          <View style={styles.avatarContainer}>
-            <Text style={styles.avatarText}>
-              {user?.user_metadata?.full_name?.charAt(0) || user?.email?.charAt(0) || 'U'}
-            </Text>
-          </View>
-          
-          <Text style={styles.nameText}>
-            {user?.user_metadata?.full_name || 'User'}
-          </Text>
-          
-          <Text style={styles.emailText}>
-            {user?.email}
-          </Text>
-        </View>
-
-        <View style={styles.infoSection}>
-          <View style={styles.infoItem}>
-            <Text style={styles.infoLabel}>Account Created</Text>
-            <Text style={styles.infoValue}>
-              {user?.created_at ? new Date(user.created_at).toLocaleDateString() : 'N/A'}
-            </Text>
-          </View>
-          
-          <View style={styles.infoItem}>
-            <Text style={styles.infoLabel}>Last Sign In</Text>
-            <Text style={styles.infoValue}>
-              {user?.last_sign_in_at ? new Date(user.last_sign_in_at).toLocaleDateString() : 'N/A'}
-            </Text>
-          </View>
-          
-          <View style={styles.infoItem}>
-            <Text style={styles.infoLabel}>Provider</Text>
-            <Text style={styles.infoValue}>
-              {user?.app_metadata?.provider || 'Google'}
-            </Text>
-          </View>
-        </View>
-
-        <View style={styles.actionsSection}>
-          <TouchableOpacity style={styles.actionButton}>
-            <Text style={styles.actionButtonText}>📧 Change Email</Text>
-          </TouchableOpacity>
-          
-          <TouchableOpacity style={styles.actionButton}>
-            <Text style={styles.actionButtonText}>🔒 Privacy Settings</Text>
-          </TouchableOpacity>
-          
-          <TouchableOpacity style={styles.actionButton}>
-            <Text style={styles.actionButtonText}>📱 Export Data</Text>
-          </TouchableOpacity>
-          
-          <TouchableOpacity 
-            style={[styles.actionButton, styles.signOutButton]}
-            onPress={handleSignOut}
-          >
-            <Text style={[styles.actionButtonText, styles.signOutButtonText]}>
-              🚪 Sign Out
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <UserInfo user={user} />
+        <AccountInfo user={user} />
+        <ActionButtons onSignOut={handleSignOut} />
       </ScrollView>
     </SafeAreaView>
   );

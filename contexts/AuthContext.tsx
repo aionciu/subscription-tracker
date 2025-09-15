@@ -50,64 +50,86 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return () => subscription.unsubscribe();
   }, []);
 
+  const initiateOAuthFlow = async () => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: 'exp://127.0.0.1:8081/--/(auth)/callback',
+        queryParams: {
+          access_type: 'offline',
+          prompt: 'consent',
+        },
+      },
+    });
+    
+    if (error) {
+      console.error('OAuth error:', error);
+      throw error;
+    }
+    
+    return data;
+  };
+
+  const openOAuthSession = async (oauthUrl: string) => {
+    const result = await WebBrowser.openAuthSessionAsync(
+      oauthUrl,
+      'exp://127.0.0.1:8081/--/(auth)/callback'
+    );
+    
+    console.log('WebBrowser result:', result);
+    return result;
+  };
+
+  const parseTokensFromUrl = (url: string) => {
+    const urlObj = new URL(url);
+    const hashParams = new URLSearchParams(urlObj.hash.substring(1));
+    
+    const accessToken = hashParams.get('access_token');
+    const refreshToken = hashParams.get('refresh_token');
+    
+    console.log('Parsed tokens:', { 
+      accessToken: accessToken ? 'Present' : 'Missing',
+      refreshToken: refreshToken ? 'Present' : 'Missing'
+    });
+    
+    return { accessToken, refreshToken };
+  };
+
+  const setUserSession = async (accessToken: string, refreshToken: string) => {
+    const { data: sessionData, error: sessionError } = await supabase.auth.setSession({
+      access_token: accessToken,
+      refresh_token: refreshToken,
+    });
+    
+    if (sessionError) {
+      console.error('Session error:', sessionError);
+      throw sessionError;
+    }
+    
+    console.log('Session set successfully:', sessionData);
+    return sessionData;
+  };
+
   const signInWithGoogle = async () => {
     try {
       setLoading(true);
-      const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: 'exp://127.0.0.1:8081/--/(auth)/callback',
-          queryParams: {
-            access_type: 'offline',
-            prompt: 'consent',
-          },
-        },
-      });
       
-      if (error) {
-        console.error('OAuth error:', error);
-        throw error;
+      const oauthData = await initiateOAuthFlow();
+      console.log('OAuth data:', oauthData);
+      
+      if (!oauthData.url) {
+        throw new Error('No OAuth URL received');
       }
       
-      console.log('OAuth data:', data);
+      const browserResult = await openOAuthSession(oauthData.url);
       
-      // Open the OAuth URL in the browser
-      if (data.url) {
-        const result = await WebBrowser.openAuthSessionAsync(
-          data.url,
-          'exp://127.0.0.1:8081/--/(auth)/callback'
-        );
+      if (browserResult.type === 'success' && browserResult.url) {
+        const { accessToken, refreshToken } = parseTokensFromUrl(browserResult.url);
         
-        console.log('WebBrowser result:', result);
-        
-        if (result.type === 'success' && result.url) {
-          // Handle the callback URL - tokens are in the hash fragment, not query params
-          const url = new URL(result.url);
-          const hashParams = new URLSearchParams(url.hash.substring(1)); // Remove the # and parse
-          
-          const accessToken = hashParams.get('access_token');
-          const refreshToken = hashParams.get('refresh_token');
-          
-          console.log('Parsed tokens:', { 
-            accessToken: accessToken ? 'Present' : 'Missing',
-            refreshToken: refreshToken ? 'Present' : 'Missing'
-          });
-          
-          if (accessToken && refreshToken) {
-            const { data: sessionData, error: sessionError } = await supabase.auth.setSession({
-              access_token: accessToken,
-              refresh_token: refreshToken,
-            });
-            
-            if (sessionError) {
-              console.error('Session error:', sessionError);
-              throw sessionError;
-            }
-            
-            console.log('Session set successfully:', sessionData);
-          } else {
-            console.error('Missing tokens in callback URL');
-          }
+        if (accessToken && refreshToken) {
+          await setUserSession(accessToken, refreshToken);
+        } else {
+          throw new Error('Missing tokens in callback URL');
         }
       }
     } catch (error) {
