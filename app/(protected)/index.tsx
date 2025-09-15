@@ -1,11 +1,11 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
 import {
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../../contexts/AuthContext';
@@ -51,13 +51,6 @@ export default function DashboardScreen() {
             onPress={() => router.push('/(protected)/subscriptions')}
           >
             <Text style={styles.actionButtonText}>📱 View Subscriptions</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.actionButton}
-            onPress={() => router.push('/(protected)/profile')}
-          >
-            <Text style={styles.actionButtonText}>👤 Profile Settings</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
