@@ -3,6 +3,7 @@ module.exports = {
   // NOTE: Update this to include the paths to all files that contain Nativewind classes.
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -10,11 +11,11 @@ module.exports = {
         primary: {
           50: '#eff6ff',
           100: '#dbeafe',
-          500: '#007AFF', // iOS blue
+          500: '#007AFF', // iOS blue - works well in both light and dark
           600: '#0056b3',
           700: '#004085',
         },
-        // Secondary colors
+        // Secondary colors - light mode
         secondary: {
           50: '#f8f9fa',
           100: '#e9ecef',
@@ -26,6 +27,19 @@ module.exports = {
           700: '#343a40',
           800: '#212529',
           900: '#1a1a1a',
+        },
+        // Dark mode colors
+        dark: {
+          50: '#f8f9fa',   // Light text on dark backgrounds
+          100: '#e9ecef',  // Light text secondary
+          200: '#dee2e6',  // Light borders
+          300: '#ced4da',  // Light borders secondary
+          400: '#adb5bd',  // Muted text
+          500: '#6c757d',  // Muted text secondary
+          600: '#495057',  // Dark text on light backgrounds
+          700: '#343a40',  // Dark text secondary
+          800: '#212529',  // Dark backgrounds
+          900: '#1a1a1a',  // Darkest backgrounds
         },
         // Status colors
         success: '#28a745',

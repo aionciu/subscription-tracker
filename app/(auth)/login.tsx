@@ -9,6 +9,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AuthGuard } from '../../components/AuthGuard';
 import { useAuth } from '../../contexts/AuthContext';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const showSignInError = () => {
   Alert.alert(
@@ -62,14 +63,18 @@ const GoogleSignInButton = ({
   </TouchableOpacity>
 );
 
-const LoginHeader = () => (
-  <View className="items-center mb-12">
-    <Text className="text-3xl font-bold text-secondary-900 text-center mb-3">Welcome to Subscription Tracker</Text>
-    <Text className="text-base text-secondary-500 text-center leading-6">
-      Track and manage your subscriptions in one place
-    </Text>
-  </View>
-);
+const LoginHeader = () => {
+  const { isDark } = useTheme();
+  
+  return (
+    <View className="items-center mb-12">
+      <Text className={`text-3xl font-bold text-center mb-3 ${isDark ? 'text-dark-50' : 'text-secondary-900'}`}>Welcome to Subscription Tracker</Text>
+      <Text className={`text-base text-center leading-6 ${isDark ? 'text-dark-400' : 'text-secondary-500'}`}>
+        Track and manage your subscriptions in one place
+      </Text>
+    </View>
+  );
+};
 
 const AuthSection = ({ 
   onSignIn, 
@@ -79,21 +84,26 @@ const AuthSection = ({
   onSignIn: () => void; 
   isLoading: boolean; 
   disabled: boolean; 
-}) => (
-  <View className="items-center">
-    <GoogleSignInButton 
-      onPress={onSignIn} 
-      disabled={disabled} 
-      isLoading={isLoading} 
-    />
-    <Text className="text-xs text-secondary-400 text-center mt-6 px-4 leading-5">
-      By signing in, you agree to our Terms of Service and Privacy Policy
-    </Text>
-  </View>
-);
+}) => {
+  const { isDark } = useTheme();
+  
+  return (
+    <View className="items-center">
+      <GoogleSignInButton 
+        onPress={onSignIn} 
+        disabled={disabled} 
+        isLoading={isLoading} 
+      />
+      <Text className={`text-xs text-center mt-6 px-4 leading-5 ${isDark ? 'text-dark-500' : 'text-secondary-400'}`}>
+        By signing in, you agree to our Terms of Service and Privacy Policy
+      </Text>
+    </View>
+  );
+};
 
 export default function LoginScreen() {
   const { signInWithGoogle, loading } = useAuth();
+  const { isDark } = useTheme();
   const [isSigningIn, setIsSigningIn] = useState(false);
 
   const handleGoogleSignIn = () => {
@@ -102,7 +112,7 @@ export default function LoginScreen() {
 
   return (
     <AuthGuard requireAuth={false}>
-      <SafeAreaView className="flex-1 bg-white">
+      <SafeAreaView className={`flex-1 ${isDark ? 'bg-dark-900' : 'bg-white'}`}>
         <View className="flex-1 justify-center px-6">
           <LoginHeader />
           <AuthSection 

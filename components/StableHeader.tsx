@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAuth } from '../contexts/AuthContext';
+import { useTheme } from '../contexts/ThemeContext';
 import { getUserAvatarText } from '../utils/userUtils';
 
 interface StableHeaderProps {
@@ -12,6 +13,7 @@ interface StableHeaderProps {
 export const StableHeader: React.FC<StableHeaderProps> = ({ title, onAvatarPress }) => {
   const insets = useSafeAreaInsets();
   const { user } = useAuth();
+  const { isDark } = useTheme();
 
   const avatarUrl = user?.user_metadata?.avatar_url;
   const avatarText = getUserAvatarText(user);
@@ -28,7 +30,7 @@ export const StableHeader: React.FC<StableHeaderProps> = ({ title, onAvatarPress
     }
 
     return (
-      <View className="w-8 h-8 rounded-full bg-white items-center justify-center">
+      <View className={`w-8 h-8 rounded-full ${isDark ? 'bg-dark-700' : 'bg-white'} items-center justify-center`}>
         <Text className="text-primary-500 font-bold text-sm">
           {avatarText}
         </Text>

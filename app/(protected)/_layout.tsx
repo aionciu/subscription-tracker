@@ -2,20 +2,22 @@ import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AuthGuard } from "../../components/AuthGuard";
+import { useTheme } from "../../contexts/ThemeContext";
 
 export default function ProtectedLayout() {
   const insets = useSafeAreaInsets();
+  const { isDark } = useTheme();
   
   return (
     <AuthGuard requireAuth={true}>
       <Tabs
         screenOptions={{
           tabBarActiveTintColor: '#007AFF',
-          tabBarInactiveTintColor: '#8E8E93',
+          tabBarInactiveTintColor: isDark ? '#8E8E93' : '#8E8E93',
           tabBarStyle: {
-            backgroundColor: '#fff',
+            backgroundColor: isDark ? '#1a1a1a' : '#fff',
             borderTopWidth: 1,
-            borderTopColor: '#E5E5EA',
+            borderTopColor: isDark ? '#343a40' : '#E5E5EA',
             paddingBottom: insets.bottom + 8,
             paddingTop: 8,
             height: 50 + insets.bottom,
