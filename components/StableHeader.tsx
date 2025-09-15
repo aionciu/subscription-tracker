@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface StableHeaderProps {
@@ -10,25 +10,13 @@ export const StableHeader: React.FC<StableHeaderProps> = ({ title }) => {
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={[styles.header, { paddingTop: insets.top }]}>
-      <Text style={styles.title}>{title}</Text>
+    <View 
+      className="bg-primary-500 px-5 pb-4"
+      style={{ paddingTop: insets.top }}
+    >
+      <Text className="text-lg font-bold text-white text-center">
+        {title}
+      </Text>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  header: {
-    backgroundColor: '#007AFF',
-    paddingHorizontal: 20,
-    paddingBottom: 16,
-    elevation: 0,
-    shadowOpacity: 0,
-    borderBottomWidth: 0,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#fff',
-    textAlign: 'center',
-  },
-});

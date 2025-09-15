@@ -2,7 +2,6 @@ import { useRouter } from 'expo-router';
 import React from 'react';
 import {
   ScrollView,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -24,25 +23,25 @@ const performSignOut = async (signOut: () => Promise<void>) => {
 };
 
 const DashboardHeader = ({ user }: { user: any }) => (
-  <View style={styles.header}>
-    <Text style={styles.welcomeText}>
+  <View className="mb-8">
+    <Text className="text-2xl font-bold text-secondary-900 mb-2">
       Welcome back, {getUserDisplayName(user)}!
     </Text>
-    <Text style={styles.subtitle}>
+    <Text className="text-base text-secondary-500 leading-6">
       Manage your subscriptions and track your spending
     </Text>
   </View>
 );
 
 const StatCard = ({ number, label }: { number: string; label: string }) => (
-  <View style={styles.statCard}>
-    <Text style={styles.statNumber}>{number}</Text>
-    <Text style={styles.statLabel}>{label}</Text>
+  <View className="bg-white p-5 rounded-xl flex-1 mx-1 items-center shadow-card">
+    <Text className="text-3xl font-bold text-primary-500 mb-1">{number}</Text>
+    <Text className="text-sm text-secondary-500 text-center">{label}</Text>
   </View>
 );
 
 const StatsContainer = () => (
-  <View style={styles.statsContainer}>
+  <View className="flex-row justify-between mb-8">
     <StatCard number="0" label="Active Subscriptions" />
     <StatCard number="$0" label="Monthly Cost" />
   </View>
@@ -58,10 +57,10 @@ const ActionButton = ({
   isDestructive?: boolean; 
 }) => (
   <TouchableOpacity
-    style={[styles.actionButton, isDestructive && styles.signOutButton]}
+    className={`p-5 rounded-xl items-center shadow-card ${isDestructive ? 'bg-danger' : 'bg-white'}`}
     onPress={onPress}
   >
-    <Text style={[styles.actionButtonText, isDestructive && styles.signOutButtonText]}>
+    <Text className={`text-base font-semibold ${isDestructive ? 'text-white' : 'text-secondary-900'}`}>
       {text}
     </Text>
   </TouchableOpacity>
@@ -74,7 +73,7 @@ const ActionsContainer = ({
   onViewSubscriptions: () => void; 
   onSignOut: () => void; 
 }) => (
-  <View style={styles.actionsContainer}>
+  <View className="gap-4">
     <ActionButton 
       text="📱 View Subscriptions" 
       onPress={onViewSubscriptions} 
@@ -100,10 +99,10 @@ export default function DashboardScreen() {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View className="flex-1">
       <StableHeader title="Dashboard" />
-      <View style={styles.container}>
-        <ScrollView style={styles.content}>
+      <View className="flex-1 bg-secondary-50">
+        <ScrollView className="flex-1 p-5">
           <DashboardHeader user={user} />
           <StatsContainer />
           <ActionsContainer 
@@ -116,87 +115,3 @@ export default function DashboardScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f8f9fa',
-  },
-  content: {
-    flex: 1,
-    padding: 20,
-  },
-  header: {
-    marginBottom: 30,
-  },
-  welcomeText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#1a1a1a',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    lineHeight: 24,
-  },
-  statsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 30,
-  },
-  statCard: {
-    backgroundColor: '#fff',
-    padding: 20,
-    borderRadius: 12,
-    flex: 1,
-    marginHorizontal: 5,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  statNumber: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#007AFF',
-    marginBottom: 4,
-  },
-  statLabel: {
-    fontSize: 14,
-    color: '#666',
-    textAlign: 'center',
-  },
-  actionsContainer: {
-    gap: 16,
-  },
-  actionButton: {
-    backgroundColor: '#fff',
-    padding: 20,
-    borderRadius: 12,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  actionButtonText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#1a1a1a',
-  },
-  signOutButton: {
-    backgroundColor: '#ff3b30',
-  },
-  signOutButtonText: {
-    color: '#fff',
-  },
-});

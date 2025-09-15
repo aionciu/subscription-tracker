@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Alert,
   ScrollView,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -42,34 +41,34 @@ const performSignOut = async (signOut: () => Promise<void>) => {
 };
 
 const UserAvatar = ({ user }: { user: any }) => (
-  <View style={styles.avatarContainer}>
-    <Text style={styles.avatarText}>
+  <View className="w-20 h-20 rounded-full bg-primary-500 justify-center items-center mb-4">
+    <Text className="text-4xl font-bold text-white">
       {getUserAvatarText(user)}
     </Text>
   </View>
 );
 
 const UserInfo = ({ user }: { user: any }) => (
-  <View style={styles.profileSection}>
+  <View className="items-center mb-8 bg-white p-8 rounded-2xl shadow-card">
     <UserAvatar user={user} />
-    <Text style={styles.nameText}>
+    <Text className="text-2xl font-bold text-secondary-900 mb-1">
       {getUserDisplayName(user)}
     </Text>
-    <Text style={styles.emailText}>
+    <Text className="text-base text-secondary-500">
       {user?.email}
     </Text>
   </View>
 );
 
 const InfoItem = ({ label, value }: { label: string; value: string }) => (
-  <View style={styles.infoItem}>
-    <Text style={styles.infoLabel}>{label}</Text>
-    <Text style={styles.infoValue}>{value}</Text>
+  <View className="flex-row justify-between items-center py-3 border-b border-secondary-200">
+    <Text className="text-base text-secondary-500">{label}</Text>
+    <Text className="text-base font-medium text-secondary-900">{value}</Text>
   </View>
 );
 
 const AccountInfo = ({ user }: { user: any }) => (
-  <View style={styles.infoSection}>
+  <View className="bg-white rounded-2xl p-5 mb-5 shadow-card">
     <InfoItem 
       label="Account Created" 
       value={formatDate(user?.created_at)} 
@@ -95,17 +94,17 @@ const ActionButton = ({
   isDestructive?: boolean; 
 }) => (
   <TouchableOpacity 
-    style={[styles.actionButton, isDestructive && styles.signOutButton]}
+    className={`p-4 rounded-xl items-center shadow-card ${isDestructive ? 'bg-danger mt-5' : 'bg-white'}`}
     onPress={onPress}
   >
-    <Text style={[styles.actionButtonText, isDestructive && styles.signOutButtonText]}>
+    <Text className={`text-base font-semibold ${isDestructive ? 'text-white' : 'text-secondary-900'}`}>
       {text}
     </Text>
   </TouchableOpacity>
 );
 
 const ActionButtons = ({ onSignOut }: { onSignOut: () => void }) => (
-  <View style={styles.actionsSection}>
+  <View className="gap-3">
     <ActionButton text="📧 Change Email" onPress={() => {}} />
     <ActionButton text="🔒 Privacy Settings" onPress={() => {}} />
     <ActionButton text="📱 Export Data" onPress={() => {}} />
@@ -125,10 +124,10 @@ export default function ProfileScreen() {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View className="flex-1">
       <StableHeader title="Profile" />
-      <View style={styles.container}>
-        <ScrollView style={styles.content}>
+      <View className="flex-1 bg-secondary-50">
+        <ScrollView className="flex-1 p-5">
           <UserInfo user={user} />
           <AccountInfo user={user} />
           <ActionButtons onSignOut={handleSignOut} />
@@ -138,112 +137,3 @@ export default function ProfileScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f8f9fa',
-  },
-  content: {
-    flex: 1,
-    padding: 20,
-  },
-  profileSection: {
-    alignItems: 'center',
-    marginBottom: 30,
-    backgroundColor: '#fff',
-    padding: 30,
-    borderRadius: 16,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  avatarContainer: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    backgroundColor: '#007AFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  avatarText: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
-  nameText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#1a1a1a',
-    marginBottom: 4,
-  },
-  emailText: {
-    fontSize: 16,
-    color: '#666',
-  },
-  infoSection: {
-    backgroundColor: '#fff',
-    borderRadius: 16,
-    padding: 20,
-    marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  infoItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
-  },
-  infoLabel: {
-    fontSize: 16,
-    color: '#666',
-  },
-  infoValue: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: '#1a1a1a',
-  },
-  actionsSection: {
-    gap: 12,
-  },
-  actionButton: {
-    backgroundColor: '#fff',
-    padding: 16,
-    borderRadius: 12,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  actionButtonText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#1a1a1a',
-  },
-  signOutButton: {
-    backgroundColor: '#ff3b30',
-    marginTop: 20,
-  },
-  signOutButtonText: {
-    color: '#fff',
-  },
-});

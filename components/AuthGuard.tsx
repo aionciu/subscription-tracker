@@ -16,14 +16,9 @@ export const AuthGuard: React.FC<AuthGuardProps> = ({
 
   if (loading) {
     return (
-      <View style={{ 
-        flex: 1, 
-        justifyContent: 'center', 
-        alignItems: 'center',
-        backgroundColor: '#fff'
-      }}>
+      <View className="flex-1 justify-center items-center bg-white">
         <ActivityIndicator size="large" color="#007AFF" />
-        <Text style={{ marginTop: 16, fontSize: 16, color: '#666' }}>
+        <Text className="mt-4 text-base text-secondary-500">
           Loading...
         </Text>
       </View>
