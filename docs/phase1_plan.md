@@ -5,6 +5,20 @@
 
 **Tech stack:** React Native + TypeScript (strict), Supabase (Postgres, Auth, Storage), Firebase Cloud Messaging, NativeWind (Tailwind for RN), React Navigation (bottom tabs).
 
+## 🎯 **Current Progress: ~45% Complete**
+
+### ✅ **MAJOR ACHIEVEMENTS**
+- **Authentication & Onboarding Flow: 100% COMPLETE** 🎉
+- **Database Schema & Services: 100% COMPLETE** 
+- **UI/UX Foundation: 90% COMPLETE**
+- **Project Setup: 95% COMPLETE**
+
+### 🚀 **NEXT PRIORITIES**
+1. **Subscriptions CRUD** - Main subscription management
+2. **Dashboard** - Value-first overview with calculations
+3. **Notifications** - Push notification system
+4. **Polish** - App icons, final touches
+
 ---
 
 ## Tabs (app structure)
@@ -31,7 +45,7 @@
 - [x] Setup NativeWind (Tailwind RN) + theme config (colors, spacing, radii)  
 - [x] Install core deps: react-navigation (bottom-tabs), @react-navigation/native, react-native-gesture-handler, react-native-reanimated, date-fns, supabase-js (TS), axios (if needed), firebase/app, firebase/messaging  
 - [x] Setup ESLint, Prettier, Husky (pre-commit hooks) and basic lint rules  
-- [ ] Create folder structure: `src/screens`, `src/components`, `src/hooks`, `src/services`, `src/lib`, `src/types`  
+- [x] Create folder structure: `src/screens`, `src/components`, `src/hooks`, `src/services`, `src/lib`, `src/types`  
 - [ ] Create `.env.example`, local env loading, and secure secrets handling (do not commit keys)
 
 **Deliverable:** Base repo with linting, formatting, Husky, project structure, and NativeWind configured.
@@ -69,11 +83,11 @@
 
 ### 4. Authentication & Onboarding Flow
 - [x] Build signup/login screens (email + social sign-in) with supabase auth  
-- [ ] Implement "first run" onboarding:
-  - Show a scrollable list of prepopulated providers (toggle/select)
-  - Allow quick input of monthly cost for each selected provider (single input per provider)
-  - Defaults: currency = RON, billing_cycle = monthly, renewal_date = auto-set (1st of month or closest reasonable date)
-  - "Finish" populates user's subscriptions and redirects to Dashboard
+- [x] Implement "first run" onboarding:
+  - [x] Show a scrollable list of prepopulated providers (toggle/select)
+  - [x] Allow quick input of monthly cost for each selected provider (single input per provider)
+  - [x] Defaults: currency = RON, billing_cycle = monthly, renewal_date = auto-set (1st of month or closest reasonable date)
+  - [x] "Finish" populates user's subscriptions and redirects to Dashboard
 - [ ] Add i18n configuration (Romanian default, English fallback)
 
 **Deliverable:** Onboarding that creates an instant populated dashboard after ~2 minutes of user input.
@@ -119,6 +133,7 @@
 - [x] Create a design system (colors, spacing, typography, tokens) in NativeWind config  
 - [x] Build reusable UI components: `Button`, `Card`, `Input`, `Modal`, `Select`, `Toggle`, `Icon`  
 - [x] Implement Dark mode & theme switch in Settings  
+- [x] Create onboarding UI components and layouts with progress indicators
 - [ ] Create app icons and splash screens for Android & iOS (various sizes)  
 - [ ] Implement provider logo display (from Supabase Storage or CDN)
 
@@ -202,12 +217,12 @@
 - ✅ Fully working React Native app (TypeScript) with tab navigation and NativeWind styling  
 - ✅ Supabase backend with schema, RLS, and seeded providers  
 - ✅ Onboarding that populates a first dashboard in ~2 minutes  
-- ✅ Subscriptions CRUD + Dashboard (Next Payment, Monthly Total, Yearly Projection)  
-- ✅ Server-side scheduled push notifications (FCM) and notification tab  
-- ✅ Basic monetization flags + Upgrade UI (Stripe optional)  
-- ✅ Analytics & error reporting configured  
-- ✅ CI/CD for builds and beta distribution  
-- ✅ Documentation, SQL seeds, TypeScript models and handover pack
+- ❌ Subscriptions CRUD + Dashboard (Next Payment, Monthly Total, Yearly Projection)  
+- ❌ Server-side scheduled push notifications (FCM) and notification tab  
+- ❌ Basic monetization flags + Upgrade UI (Stripe optional)  
+- ❌ Analytics & error reporting configured  
+- ❌ CI/CD for builds and beta distribution  
+- ❌ Documentation, SQL seeds, TypeScript models and handover pack
 
 ---
 
