@@ -1,0 +1,568 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Onboarding Flow Snapshot Tests should match cost input screen snapshot 1`] = `
+[
+  <View
+    className="px-6 pt-4 pb-2"
+  >
+    <View
+      className="flex-row justify-between items-center mb-3"
+    >
+      <Text
+        className="text-sm font-medium text-secondary-600"
+      >
+        Step 
+        4
+         of 
+        5
+      </Text>
+      <Text
+        className="text-sm text-secondary-500"
+      >
+        80
+        %
+      </Text>
+    </View>
+    <View
+      className="h-2 rounded-full bg-secondary-200"
+    >
+      <View
+        className="h-2 rounded-full bg-primary-500"
+        style={
+          {
+            "width": "80%",
+          }
+        }
+      />
+    </View>
+  </View>,
+  <View
+    className="px-6 mb-6"
+  >
+    <Text
+      className="text-2xl font-bold mb-2 text-secondary-900"
+    >
+      Quick Setup
+    </Text>
+    <Text
+      className="text-base text-secondary-500"
+    >
+      Add subscription details
+    </Text>
+  </View>,
+  <View
+    className="flex-1 px-6"
+  >
+    <RCTScrollView
+      className="flex-1"
+      showsVerticalScrollIndicator={false}
+    >
+      <View>
+        <Text
+          className="text-base mb-6 text-secondary-500"
+        >
+          Enter the monthly cost for each subscription. You can always edit these later.
+        </Text>
+        <View
+          className="p-8 rounded-xl items-center bg-secondary-50"
+        >
+          <Text
+            className="text-4xl mb-4"
+          >
+            📝
+          </Text>
+          <Text
+            className="text-base font-medium mb-2 text-secondary-600"
+          >
+            No subscriptions to set up
+          </Text>
+          <Text
+            className="text-sm text-center text-secondary-500"
+          >
+            You can add subscriptions later from the main app
+          </Text>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>,
+  <View
+    className="px-6 pb-6 pt-4"
+  >
+    <View
+      className="flex-row justify-between items-center"
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "opacity": 1,
+          }
+        }
+      >
+        <Ionicons
+          color="#8E8E93"
+          name="chevron-back"
+          size={20}
+        />
+        <Text
+          className="ml-2 text-base font-medium text-secondary-600"
+        >
+          Back
+        </Text>
+      </View>
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": false,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "opacity": 1,
+          }
+        }
+      >
+        <Text
+          className="text-white text-base font-semibold mr-2"
+        >
+          Complete Setup
+        </Text>
+        <Ionicons
+          color="#FFFFFF"
+          name="chevron-forward"
+          size={20}
+        />
+      </View>
+    </View>
+  </View>,
+]
+`;
+
+exports[`Onboarding Flow Snapshot Tests should match provider selection screen snapshot 1`] = `
+[
+  <View
+    className="px-6 pt-4 pb-2"
+  >
+    <View
+      className="flex-row justify-between items-center mb-3"
+    >
+      <Text
+        className="text-sm font-medium text-secondary-600"
+      >
+        Step 
+        3
+         of 
+        5
+      </Text>
+      <Text
+        className="text-sm text-secondary-500"
+      >
+        60
+        %
+      </Text>
+    </View>
+    <View
+      className="h-2 rounded-full bg-secondary-200"
+    >
+      <View
+        className="h-2 rounded-full bg-primary-500"
+        style={
+          {
+            "width": "60%",
+          }
+        }
+      />
+    </View>
+  </View>,
+  <View
+    className="px-6 mb-6"
+  >
+    <Text
+      className="text-2xl font-bold mb-2 text-secondary-900"
+    >
+      Select Providers
+    </Text>
+    <Text
+      className="text-base text-secondary-500"
+    >
+      Choose your subscriptions
+    </Text>
+  </View>,
+  <View
+    className="flex-1 px-6"
+  >
+    <View
+      className="flex-1"
+    >
+      <View
+        className="mb-6"
+      >
+        <TextInput
+          className="px-4 py-3 rounded-xl border bg-white border-secondary-200 text-secondary-800"
+          onChangeText={[Function]}
+          placeholder="Search providers..."
+          placeholderTextColor="#8E8E93"
+          value=""
+        />
+      </View>
+      <RCTScrollView
+        className="flex-1"
+        showsVerticalScrollIndicator={false}
+      >
+        <View>
+          <View
+            className="mb-6"
+          >
+            <Text
+              className="text-lg font-semibold mb-3 text-secondary-800"
+            >
+              Streaming
+            </Text>
+            <View
+              className="space-y-2"
+            >
+              <View
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  className="flex-row items-center flex-1"
+                >
+                  <View
+                    className="w-12 h-12 rounded-xl items-center justify-center mr-4 bg-secondary-100"
+                  >
+                    <Text
+                      className="text-xl"
+                    >
+                      N
+                    </Text>
+                  </View>
+                  <View
+                    className="flex-1"
+                  >
+                    <Text
+                      className="text-base font-medium mb-1 text-secondary-800"
+                    >
+                      Netflix
+                    </Text>
+                    <Text
+                      className="text-sm text-secondary-500"
+                    >
+                      Streaming service
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            className="mb-6"
+          >
+            <Text
+              className="text-lg font-semibold mb-3 text-secondary-800"
+            >
+              Music
+            </Text>
+            <View
+              className="space-y-2"
+            >
+              <View
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  className="flex-row items-center flex-1"
+                >
+                  <View
+                    className="w-12 h-12 rounded-xl items-center justify-center mr-4 bg-secondary-100"
+                  >
+                    <Text
+                      className="text-xl"
+                    >
+                      S
+                    </Text>
+                  </View>
+                  <View
+                    className="flex-1"
+                  >
+                    <Text
+                      className="text-base font-medium mb-1 text-secondary-800"
+                    >
+                      Spotify
+                    </Text>
+                    <Text
+                      className="text-sm text-secondary-500"
+                    >
+                      Music streaming
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            className="mb-6"
+          >
+            <Text
+              className="text-lg font-semibold mb-3 text-secondary-800"
+            >
+              Custom Provider
+            </Text>
+            <View
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                {
+                  "opacity": 1,
+                }
+              }
+            >
+              <Text
+                className="text-2xl mr-3"
+              >
+                +
+              </Text>
+              <Text
+                className="text-base font-medium text-secondary-600"
+              >
+                Add Custom Provider
+              </Text>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>,
+  <View
+    className="px-6 pb-6 pt-4"
+  >
+    <View
+      className="flex-row justify-between items-center"
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "opacity": 1,
+          }
+        }
+      >
+        <Ionicons
+          color="#8E8E93"
+          name="chevron-back"
+          size={20}
+        />
+        <Text
+          className="ml-2 text-base font-medium text-secondary-600"
+        >
+          Back
+        </Text>
+      </View>
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": false,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "opacity": 1,
+          }
+        }
+      >
+        <Text
+          className="text-white text-base font-semibold mr-2"
+        >
+          Skip
+        </Text>
+        <Ionicons
+          color="#FFFFFF"
+          name="chevron-forward"
+          size={20}
+        />
+      </View>
+    </View>
+  </View>,
+]
+`;

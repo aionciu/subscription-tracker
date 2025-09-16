@@ -12,10 +12,12 @@ A React Native subscription management app built with Expo and Supabase authenti
 
 ## 📚 Documentation
 
-All detailed documentation is available in the [documentation/](./documentation/) folder:
-- [Setup Guide](./documentation/SUPABASE_SETUP.md) - Complete Supabase and Google OAuth setup
-- [Troubleshooting](./documentation/TROUBLESHOOTING.md) - Common issues and solutions
-- [Environment Variables](./documentation/env.example) - Configuration template
+All detailed documentation is available in the [docs/](./docs/) folder:
+- **[Documentation Index](./docs/README.md)** - Complete documentation overview
+- **[Setup Guide](./docs/setup/SUPABASE_SETUP.md)** - Complete Supabase and Google OAuth setup
+- **[Troubleshooting](./docs/development/TROUBLESHOOTING.md)** - Common issues and solutions
+- **[Environment Variables](./docs/setup/env.example)** - Configuration template
+- **[Testing Guide](./docs/testing/README.md)** - Test structure and best practices
 
 ## Setup
 
@@ -27,7 +29,7 @@ npm install
 
 ### 2. Configure Supabase Authentication
 
-Follow the detailed setup guide in [documentation/SUPABASE_SETUP.md](./documentation/SUPABASE_SETUP.md) to:
+Follow the detailed setup guide in [docs/setup/SUPABASE_SETUP.md](./docs/setup/SUPABASE_SETUP.md) to:
 - Create a Supabase project
 - Set up Google OAuth credentials
 - Configure environment variables

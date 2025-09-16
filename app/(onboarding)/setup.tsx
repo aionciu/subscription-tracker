@@ -14,7 +14,9 @@ export default function QuickSetupScreen() {
   const { state, updateSubscriptions, setCurrentStepByRoute, previousStep } = useOnboarding();
   
   const [subscriptions, setSubscriptions] = useState<Partial<Subscription>[]>([]);
+  const [billingCycles, setBillingCycles] = useState<BillingCycle[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Set current step when component mounts
@@ -149,8 +151,6 @@ export default function QuickSetupScreen() {
     );
   };
 
-  const [billingCycles, setBillingCycles] = useState<BillingCycle[]>([]);
-  const [loading, setLoading] = useState(true);
 
   const getCurrencySymbol = () => {
     // In real implementation, this would come from the selected currency

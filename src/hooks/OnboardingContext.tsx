@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useState } from 'react';
+import React, { createContext, ReactNode, useCallback, useContext, useState } from 'react';
 import { Provider } from '../types/provider';
 import { Subscription } from '../types/subscription';
 import { User } from '../types/user';
@@ -96,28 +96,28 @@ const initialState: OnboardingState = {
 export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({ children }) => {
   const [state, setState] = useState<OnboardingState>(initialState);
 
-  const updateProfileData = (data: Partial<User>) => {
+  const updateProfileData = useCallback((data: Partial<User>) => {
     setState(prev => ({
       ...prev,
       profileData: { ...prev.profileData, ...data },
     }));
-  };
+  }, []);
 
-  const updateSelectedProviders = (providers: Provider[]) => {
+  const updateSelectedProviders = useCallback((providers: Provider[]) => {
     setState(prev => ({
       ...prev,
       selectedProviders: providers,
     }));
-  };
+  }, []);
 
-  const updateSubscriptions = (subscriptions: Partial<Subscription>[]) => {
+  const updateSubscriptions = useCallback((subscriptions: Partial<Subscription>[]) => {
     setState(prev => ({
       ...prev,
       subscriptions: subscriptions,
     }));
-  };
+  }, []);
 
-  const nextStep = () => {
+  const nextStep = useCallback(() => {
     setState(prev => {
       const nextStepIndex = Math.min(prev.currentStep + 1, prev.totalSteps - 1);
       const updatedSteps = [...prev.steps];
@@ -129,24 +129,24 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({ children
         steps: updatedSteps,
       };
     });
-  };
+  }, []);
 
-  const previousStep = () => {
+  const previousStep = useCallback(() => {
     setState(prev => ({
       ...prev,
       currentStep: Math.max(prev.currentStep - 1, 0),
     }));
-  };
+  }, []);
 
-  const goToStep = (stepIndex: number) => {
+  const goToStep = useCallback((stepIndex: number) => {
     setState(prev => ({
       ...prev,
       currentStep: Math.max(0, Math.min(stepIndex, prev.totalSteps - 1)),
     }));
-  };
+  }, []);
 
   // Function to set current step based on route
-  const setCurrentStepByRoute = (routeName: string) => {
+  const setCurrentStepByRoute = useCallback((routeName: string) => {
     const stepMap: { [key: string]: number } = {
       'index': 0,
       'profile': 1,
@@ -160,26 +160,26 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({ children
       ...prev,
       currentStep: stepIndex,
     }));
-  };
+  }, []);
 
-  const completeOnboarding = () => {
+  const completeOnboarding = useCallback(() => {
     setState(prev => ({
       ...prev,
       isCompleted: true,
       steps: prev.steps.map(step => ({ ...step, completed: true })),
     }));
-  };
+  }, []);
 
-  const resetOnboarding = () => {
+  const resetOnboarding = useCallback(() => {
     setState(initialState);
-  };
+  }, []);
 
-  const setLoading = (loading: boolean) => {
+  const setLoading = useCallback((loading: boolean) => {
     setState(prev => ({
       ...prev,
       isLoading: loading,
     }));
-  };
+  }, []);
 
   const value: OnboardingContextType = {
     state,
