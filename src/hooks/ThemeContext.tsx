@@ -21,7 +21,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const systemColorScheme = useColorScheme();
 
   // Determine if we should use dark mode
-  const isDark = theme === 'dark' || (theme === 'system' && systemColorScheme === 'dark');
+  const isDark = theme === 'dark' || (theme === 'system' && systemColorScheme?.colorScheme === 'dark');
   const currentColorScheme = isDark ? 'dark' : 'light';
 
   // Load saved theme preference on app start
@@ -54,7 +54,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         // Apply to NativeWind
         if (theme === 'system') {
           // Let NativeWind follow system preference
-          colorScheme.set(systemColorScheme);
+          colorScheme.set(systemColorScheme?.colorScheme || 'light');
         } else {
           // Apply manual selection
           colorScheme.set(theme);

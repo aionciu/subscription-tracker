@@ -6,8 +6,8 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import { StableHeader } from '../../components/StableHeader';
-import { useTheme } from '../../contexts/ThemeContext';
+import { StableHeader } from '../../src/components/StableHeader';
+import { useTheme } from '../../src/hooks/ThemeContext';
 
 export default function SubscriptionsScreen() {
   const router = useRouter();

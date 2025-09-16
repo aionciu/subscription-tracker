@@ -58,10 +58,10 @@
 ---
 
 ### 3. TypeScript Types & Shared Models
-- [ ] Define TypeScript interfaces / types in `src/types`:
+- [x] Define TypeScript interfaces / types in `src/types`:
   - `User`, `Subscription`, `Provider`, `Category`, `BillingCycle`, `Currency`, `FeatureFlag`
 - [x] Ensure Supabase client is typed and models are used across services
-- [ ] Create example API layer `src/services/supabaseClient.ts` with typed helpers
+- [x] Create example API layer `src/services/supabaseClient.ts` with typed helpers
 
 **Deliverable:** `src/types/*.ts` and typed supabase client wrapper.
 

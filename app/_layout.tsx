@@ -3,9 +3,9 @@ import { StatusBar } from "expo-status-bar";
 import { verifyInstallation } from "nativewind";
 import { Platform, StatusBar as RNStatusBar } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { AuthProvider } from "../contexts/AuthContext";
-import { ThemeProvider } from "../contexts/ThemeContext";
 import "../globals.css";
+import { AuthProvider } from "../src/hooks/AuthContext";
+import { ThemeProvider } from "../src/hooks/ThemeContext";
 
 // Verify NativeWind installation
 verifyInstallation();

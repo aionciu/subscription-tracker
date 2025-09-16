@@ -1,8 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { AuthGuard } from "../../components/AuthGuard";
-import { useTheme } from "../../contexts/ThemeContext";
+import { AuthGuard } from "../../src/components/AuthGuard";
+import { useTheme } from "../../src/hooks/ThemeContext";
 
 export default function ProtectedLayout() {
   const insets = useSafeAreaInsets();

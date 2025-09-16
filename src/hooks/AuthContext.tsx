@@ -1,7 +1,7 @@
 import { Session, User } from '@supabase/supabase-js';
 import * as WebBrowser from 'expo-web-browser';
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { supabase } from '../lib/supabase';
+import { supabase } from '../../lib/supabase';
 
 interface AuthContextType {
   user: User | null;

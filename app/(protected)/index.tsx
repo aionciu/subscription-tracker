@@ -6,10 +6,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { StableHeader } from '../../components/StableHeader';
-import { useAuth } from '../../contexts/AuthContext';
-import { useTheme } from '../../contexts/ThemeContext';
-import { getUserDisplayName } from '../../utils/userUtils';
+import { StableHeader } from '../../src/components/StableHeader';
+import { useAuth } from '../../src/hooks/AuthContext';
+import { useTheme } from '../../src/hooks/ThemeContext';
+import { getUserDisplayName } from '../../src/utils/userUtils';
 
 const handleSignOutError = (error: unknown) => {
   console.error('Sign out error:', error);

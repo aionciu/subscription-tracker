@@ -1,8 +1,8 @@
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useAuth } from '../contexts/AuthContext';
-import { useTheme } from '../contexts/ThemeContext';
+import { useAuth } from '../hooks/AuthContext';
+import { useTheme } from '../hooks/ThemeContext';
 import { getUserAvatarText } from '../utils/userUtils';
 
 interface StableHeaderProps {

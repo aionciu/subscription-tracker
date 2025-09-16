@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import {
-  ActivityIndicator,
-  Alert,
-  Text,
-  TouchableOpacity,
-  View,
+    ActivityIndicator,
+    Alert,
+    Text,
+    TouchableOpacity,
+    View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { AuthGuard } from '../../components/AuthGuard';
-import { useAuth } from '../../contexts/AuthContext';
-import { useTheme } from '../../contexts/ThemeContext';
+import { AuthGuard } from '../../src/components/AuthGuard';
+import { useAuth } from '../../src/hooks/AuthContext';
+import { useTheme } from '../../src/hooks/ThemeContext';
 
 const showSignInError = () => {
   Alert.alert(

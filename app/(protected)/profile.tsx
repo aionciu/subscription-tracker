@@ -1,16 +1,16 @@
 import React from 'react';
 import {
-    Alert,
-    ScrollView,
-    Text,
-    TouchableOpacity,
-    View,
+  Alert,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import { StableHeader } from '../../components/StableHeader';
-import { ThemeToggle } from '../../components/ThemeToggle';
-import { useAuth } from '../../contexts/AuthContext';
-import { useTheme } from '../../contexts/ThemeContext';
-import { formatDate, getUserAvatarText, getUserDisplayName, getUserProvider } from '../../utils/userUtils';
+import { StableHeader } from '../../src/components/StableHeader';
+import { ThemeToggle } from '../../src/components/ThemeToggle';
+import { useAuth } from '../../src/hooks/AuthContext';
+import { useTheme } from '../../src/hooks/ThemeContext';
+import { formatDate, getUserAvatarText, getUserDisplayName, getUserProvider } from '../../src/utils/userUtils';
 
 const showSignOutConfirmation = (onConfirm: () => Promise<void>) => {
   Alert.alert(
