@@ -41,7 +41,7 @@
 ### 2. Supabase & Backend Setup
 - [x] Create Supabase project & link to repo env variables  
 - [x] Configure Supabase Auth (email/password + OAuth for Google & Apple)  
-- [ ] Create initial DB schema (tables + relationships) and migrations using Supabase CLI:
+- [x] Create initial DB schema (tables + relationships) and migrations using Supabase CLI:
   - users
   - subscriptions
   - subscription_providers
@@ -49,9 +49,9 @@
   - billing_cycles
   - currencies
   - feature_flags
-- [ ] Implement Row Level Security (RLS) policies for per-user isolation
-- [ ] Create SQL seed/migration scripts (providers + categories + billing cycles + currencies)
-- [ ] Configure Supabase Storage for provider logos (or plan for CDN)
+- [x] Implement Row Level Security (RLS) policies for per-user isolation
+- [x] Create SQL seed/migration scripts (providers + categories + billing cycles + currencies)
+- [x] Configure Supabase Storage for provider logos (or plan for CDN)
 
 **Deliverable:** Supabase project with schema, RLS policies and seed data (SQL files committed).
 
