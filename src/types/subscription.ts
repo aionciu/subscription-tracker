@@ -17,11 +17,10 @@ export interface Subscription {
   currency_id: string;
   billing_cycle_id: string;
   status: SubscriptionStatus;
-  start_date: string;
+  start_date: string | null;
   next_billing_date: string;
   end_date: string | null;
   auto_renew: boolean;
-  notes: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -43,11 +42,10 @@ export interface SubscriptionInsert {
   currency_id: string;
   billing_cycle_id: string;
   status?: SubscriptionStatus;
-  start_date: string;
+  start_date?: string | null;
   next_billing_date: string;
   end_date?: string | null;
   auto_renew?: boolean;
-  notes?: string | null;
 }
 
 export interface SubscriptionUpdate {
@@ -59,11 +57,10 @@ export interface SubscriptionUpdate {
   currency_id?: string;
   billing_cycle_id?: string;
   status?: SubscriptionStatus;
-  start_date?: string;
+  start_date?: string | null;
   next_billing_date?: string;
   end_date?: string | null;
   auto_renew?: boolean;
-  notes?: string | null;
 }
 
 // Subscription status constants
