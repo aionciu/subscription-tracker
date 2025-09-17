@@ -3,7 +3,7 @@ import { Subscription } from '../types/subscription';
 import { User } from '../types/user';
 
 export class OnboardingService {
-  // Create user profile after authentication
+  // Create or update user profile after authentication
   static async createUserProfile(userData: Partial<User>): Promise<User> {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) throw new Error('User not authenticated');
@@ -25,7 +25,10 @@ export class OnboardingService {
 
     const { data, error } = await supabase
       .from('users')
-      .insert(profileData)
+      .upsert(profileData, { 
+        onConflict: 'id',
+        ignoreDuplicates: false 
+      })
       .select()
       .single();
 

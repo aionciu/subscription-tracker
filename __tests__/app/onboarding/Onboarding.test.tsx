@@ -161,9 +161,6 @@ describe('Onboarding Flow', () => {
       // Check if search bar is present
       expect(screen.getByPlaceholderText('Search providers...')).toBeTruthy();
       
-      // Check if custom provider section is present
-      expect(screen.getByText('Custom Provider')).toBeTruthy();
-      expect(screen.getByText('Add Custom Provider')).toBeTruthy();
     });
 
     it('should load providers from database', async () => {
@@ -212,48 +209,6 @@ describe('Onboarding Flow', () => {
       });
     });
 
-    it('should allow adding custom provider', async () => {
-      // Mock the provider service to return test data
-      mockProviderService.getAllProviders.mockResolvedValue(mockProviders);
-
-      render(
-        <TestWrapper>
-          <ProvidersScreen />
-        </TestWrapper>
-      );
-
-      // Wait for providers to load
-      await waitFor(() => {
-        expect(screen.getByText('Netflix')).toBeTruthy();
-      });
-
-      // Initially no providers should be selected
-      expect(screen.getByText('Skip')).toBeTruthy();
-
-      // Click add custom provider button
-      fireEvent.press(screen.getByText('Add Custom Provider'));
-
-      // Wait for the form to appear and get the input
-      let input;
-      await waitFor(() => {
-        input = screen.getByPlaceholderText('Enter provider name...');
-        expect(input).toBeTruthy();
-      });
-
-      // Enter custom provider name
-      fireEvent.changeText(input, 'My Custom Service');
-
-      // Click Add button
-      fireEvent.press(screen.getByText('Add'));
-
-      // Check if the selected count increased (custom provider was added to selectedProviders)
-      await waitFor(() => {
-        expect(screen.getByText('1 provider selected')).toBeTruthy();
-      });
-
-      // The form should disappear and show the "Add Custom Provider" button again
-      expect(screen.getByText('Add Custom Provider')).toBeTruthy();
-    });
 
     it('should filter providers by search query', async () => {
       render(
@@ -645,60 +600,7 @@ describe('Onboarding Flow', () => {
       expectEmptySetupScreen();
     });
 
-    it('should handle custom provider with empty name', async () => {
-      render(
-        <TestWrapper>
-          <ProvidersScreen />
-        </TestWrapper>
-      );
 
-      // Click add custom provider button
-      fireEvent.press(screen.getByText('Add Custom Provider'));
-
-      // Try to add without entering name
-      fireEvent.press(screen.getByText('Add'));
-
-      // Should not add the provider
-      expect(screen.queryByText('')).toBeFalsy();
-    });
-
-    it('should handle very long provider names', async () => {
-      // Mock the provider service to return test data
-      mockProviderService.getAllProviders.mockResolvedValue(mockProviders);
-
-      render(
-        <TestWrapper>
-          <ProvidersScreen />
-        </TestWrapper>
-      );
-
-      // Wait for providers to load
-      await waitFor(() => {
-        expect(screen.getByText('Netflix')).toBeTruthy();
-      });
-
-      // Click add custom provider button
-      fireEvent.press(screen.getByText('Add Custom Provider'));
-
-      // Wait for the form to appear and get the input
-      let input;
-      await waitFor(() => {
-        input = screen.getByPlaceholderText('Enter provider name...');
-        expect(input).toBeTruthy();
-      });
-
-      // Enter very long name
-      const longName = 'A'.repeat(1000);
-      fireEvent.changeText(input, longName);
-
-      // Should handle gracefully
-      fireEvent.press(screen.getByText('Add'));
-
-      // Should add the provider (check selected count increased)
-      await waitFor(() => {
-        expect(screen.getByText('1 provider selected')).toBeTruthy();
-      });
-    });
 
     it('should handle rapid provider selection/deselection', async () => {
       render(

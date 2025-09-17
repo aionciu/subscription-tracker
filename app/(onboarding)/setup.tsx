@@ -55,11 +55,10 @@ export default function QuickSetupScreen() {
     // Initialize subscriptions for selected providers
     const initialSubscriptions = state.selectedProviders.map(provider => ({
       provider_id: provider.id,
-      custom_provider_name: provider.name,
       name: provider.name,
       description: provider.description,
       amount: 0,
-      currency_id: state.profileData.currency_id,
+      currency_id: state.profileData.currency_id || undefined,
       billing_cycle_id: '', // Will be set when billing cycles are loaded
       status: 'active' as const,
       start_date: new Date().toISOString().split('T')[0],

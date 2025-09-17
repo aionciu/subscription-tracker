@@ -36,11 +36,14 @@ export class UserService {
     return data;
   }
 
-  // Create user profile (called automatically on signup)
+  // Create or update user profile (called automatically on signup)
   static async createProfile(userData: any): Promise<User> {
     const { data, error } = await supabase
       .from('users')
-      .insert(userData)
+      .upsert(userData, { 
+        onConflict: 'id',
+        ignoreDuplicates: false 
+      })
       .select()
       .single();
 

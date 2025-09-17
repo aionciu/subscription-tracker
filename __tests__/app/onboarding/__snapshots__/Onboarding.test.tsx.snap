@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Onboarding Flow Snapshot Tests should match cost input screen snapshot 1`] = `
 [
@@ -406,60 +406,6 @@ exports[`Onboarding Flow Snapshot Tests should match provider selection screen s
                   </View>
                 </View>
               </View>
-            </View>
-          </View>
-          <View
-            className="mb-6"
-          >
-            <Text
-              className="text-lg font-semibold mb-3 text-secondary-800"
-            >
-              Custom Provider
-            </Text>
-            <View
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "opacity": 1,
-                }
-              }
-            >
-              <Text
-                className="text-2xl mr-3"
-              >
-                +
-              </Text>
-              <Text
-                className="text-base font-medium text-secondary-600"
-              >
-                Add Custom Provider
-              </Text>
             </View>
           </View>
         </View>
