@@ -51,10 +51,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   const initiateOAuthFlow = async () => {
+    // Use Expo Dev URL for published apps, fallback to local development
+    const redirectUrl = process.env.EXPO_PUBLIC_EXPO_DEV_URL || 
+                       process.env.EXPO_PUBLIC_EXPO_GO_URL || 
+                       'exp://192.168.1.100:8081';
+    
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: 'exp://127.0.0.1:8081/--/(auth)/callback',
+        redirectTo: `${redirectUrl}/--/(auth)/callback`,
         queryParams: {
           access_type: 'offline',
           prompt: 'consent',
@@ -71,9 +76,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const openOAuthSession = async (oauthUrl: string) => {
+    // Use Expo Dev URL for published apps, fallback to local development
+    const redirectUrl = process.env.EXPO_PUBLIC_EXPO_DEV_URL || 
+                       process.env.EXPO_PUBLIC_EXPO_GO_URL || 
+                       'exp://192.168.1.100:8081';
+    
     const result = await WebBrowser.openAuthSessionAsync(
       oauthUrl,
-      'exp://127.0.0.1:8081/--/(auth)/callback'
+      `${redirectUrl}/--/(auth)/callback`
     );
     
     console.log('WebBrowser result:', result);
