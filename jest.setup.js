@@ -106,12 +106,15 @@ console.warn = (...args) => {
   originalWarn.call(console, ...args);
 };
 
-// Mock console.error to reduce noise from act() warnings
+// Mock console.error to reduce noise from act() warnings and expected test errors
 const originalError = console.error;
 console.error = (...args) => {
   if (
     typeof args[0] === 'string' &&
-    args[0].includes('An update to') && args[0].includes('inside a test was not wrapped in act')
+    (args[0].includes('An update to') && args[0].includes('inside a test was not wrapped in act') ||
+     args[0].includes('Error fetching providers:') ||
+     args[0].includes('Error fetching billing cycles:') ||
+     args[0].includes('Network error'))
   ) {
     return;
   }
