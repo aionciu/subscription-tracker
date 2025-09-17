@@ -121,7 +121,7 @@ export default function CompleteScreen() {
           <Text className={`text-2xl font-bold text-center mb-2 ${
             isDark ? 'text-dark-50' : 'text-secondary-900'
           }`}>
-            You're All Set!
+            You&apos;re All Set!
           </Text>
           
           <Text className={`text-base text-center ${
@@ -201,7 +201,7 @@ export default function CompleteScreen() {
           <Text className={`text-lg font-semibold mb-4 ${
             isDark ? 'text-dark-100' : 'text-secondary-800'
           }`}>
-            What's Next?
+            What&apos;s Next?
           </Text>
           
           <View className="space-y-4">

@@ -43,8 +43,8 @@ export default function WelcomeScreen() {
         <Text className={`text-lg text-center leading-6 mb-8 ${
           isDark ? 'text-dark-400' : 'text-secondary-500'
         }`}>
-          Let's help you track and manage your subscriptions in one place. 
-          We'll set up your profile and get you started in just a few steps.
+          Let&apos;s help you track and manage your subscriptions in one place. 
+          We&apos;ll set up your profile and get you started in just a few steps.
         </Text>
 
         {/* Features List */}

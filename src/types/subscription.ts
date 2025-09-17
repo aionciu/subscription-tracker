@@ -1,4 +1,9 @@
 // Subscription types and interfaces
+import { BillingCycle } from './billing-cycle';
+import { Category } from './category';
+import { Currency } from './currency';
+import { Provider } from './provider';
+
 export type SubscriptionStatus = 'active' | 'paused' | 'cancelled' | 'expired';
 
 export interface Subscription {
@@ -93,10 +98,4 @@ export function calculateMonthlyAmount(subscription: Subscription, billingCycle:
 export function calculateYearlyProjection(monthlyAmount: number): number {
   return monthlyAmount * 12;
 }
-
-// Import related types
-import { BillingCycle } from './billing-cycle';
-import { Category } from './category';
-import { Currency } from './currency';
-import { Provider } from './provider';
 

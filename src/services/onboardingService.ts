@@ -101,7 +101,7 @@ export class OnboardingService {
 
       if (error) return false;
       return data?.onboarding_completed || false;
-    } catch (error) {
+    } catch {
       return false;
     }
   }

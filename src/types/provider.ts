@@ -1,4 +1,6 @@
 // Subscription provider types and interfaces
+import { Category } from './category';
+
 export interface Provider {
   id: string;
   name: string;
@@ -61,6 +63,3 @@ export const POPULAR_PROVIDERS = {
 } as const;
 
 export type PopularProvider = typeof POPULAR_PROVIDERS[keyof typeof POPULAR_PROVIDERS];
-
-// Import Category type
-import { Category } from './category';

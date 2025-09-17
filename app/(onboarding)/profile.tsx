@@ -10,7 +10,7 @@ import { Currency } from '../../src/types/currency';
 export default function ProfileSetupScreen() {
   const router = useRouter();
   const { isDark } = useTheme();
-  const { state, updateProfileData, setCurrentStepByRoute, previousStep } = useOnboarding();
+  const { updateProfileData, setCurrentStepByRoute, previousStep } = useOnboarding();
   
   const [currencies, setCurrencies] = useState<Currency[]>([]);
   const [selectedCurrency, setSelectedCurrency] = useState<Currency | null>(null);

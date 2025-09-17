@@ -101,7 +101,7 @@ export default function QuickSetupScreen() {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       router.push('/(onboarding)/complete');
-    } catch (error) {
+    } catch {
       Alert.alert(
         'Error',
         'Failed to save subscriptions. Please try again.',

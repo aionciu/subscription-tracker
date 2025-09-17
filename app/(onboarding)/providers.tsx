@@ -10,7 +10,7 @@ import { ProviderInsert, ProviderWithCategory } from '../../src/types/provider';
 export default function ProvidersScreen() {
   const router = useRouter();
   const { isDark } = useTheme();
-  const { state, updateSelectedProviders, setCurrentStepByRoute, previousStep } = useOnboarding();
+  const { updateSelectedProviders, setCurrentStepByRoute, previousStep } = useOnboarding();
   
   const [providers, setProviders] = useState<ProviderWithCategory[]>([]);
   const [selectedProviders, setSelectedProviders] = useState<ProviderWithCategory[]>([]);
